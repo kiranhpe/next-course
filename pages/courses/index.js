@@ -7,6 +7,8 @@ const CoursesPage = () => {
 
     return (
         <div>
+              <title>Next Courses</title>
+
         <CourseList courses={allCourses}></CourseList>
      </div>
     )

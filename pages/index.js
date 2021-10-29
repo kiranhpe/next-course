@@ -7,5 +7,10 @@ export default function Home() {
   useEffect(() => {
     router.push("/courses");
   }, []);
-  return <div className={styles.container}></div>;
+  return (
+    <>
+    <title>Next Courses</title>
+      <div className={styles.container}></div>;
+    </>
+  );
 }

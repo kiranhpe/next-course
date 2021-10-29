@@ -1,6 +1,6 @@
 import React from "react";
 import { LinkButton } from "../ui-kit/link-button";
-import styles from "./course.module.css";
+import styles from "./course.module.scss";
 export const Course = ({ course }) => {
   return (
     <div className={styles.card}>

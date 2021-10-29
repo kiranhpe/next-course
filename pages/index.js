@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 import { useRouter } from "next/dist/client/router";
 
 export default function Home() {

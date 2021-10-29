@@ -1,0 +1,36 @@
+.card {
+    box-shadow: 10px 10px 5px 0px rgba(242,242,242,0.75);
+    padding: 32px;
+}
+.cardheader {
+    display: flex;
+    align-items: center;
+}
+.rating {
+    margin-left: auto;
+    background-color: gray;
+    padding: 4px 8px;
+    border-radius: 30%;
+}
+
+.bestSeller {
+   display: flex;
+   align-items: center;
+}
+.bestSeller span {
+    background-color: coral;
+    margin-left: 16px;
+    padding: 2px 4px;
+}
+
+.excellent {
+    background-color: #00ff00;
+}
+
+.average {
+    background-color: #ff9900;
+}
+
+.poor {
+    background-color: #ff0000;
+}

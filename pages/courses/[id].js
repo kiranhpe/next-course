@@ -17,7 +17,7 @@ export const CourseDetails = () => {
       setCourse(res.data);
     });
 
-    axios.get(`/api/reviews/${id}`).then((res) => {
+    axios.get(`/api/courses/${id}/reviews`).then((res) => {
       setReviews(res.data);
     });
   }, [id]);

@@ -24,8 +24,8 @@ export const Course = ({ course, authors, isAdvancedPage }) => {
       <div className={styles.courseDetails}>
         <div>
           <p>{course.description}</p>
-          {course.category.split(",").map((catogory) => (
-            <span className={styles.tags}>{catogory}</span>
+          {course.category.split(",").map((catogory,index) => (
+            <span className={styles.tags} key={catogory+'-'+index}>{catogory}</span>
           ))}
           <p className={styles.author}>
             {authors && "- " + authors.find(x =>x.id === course.id)?.name}

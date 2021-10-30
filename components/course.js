@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Card } from "../ui-kit/card";
 import { LinkButton } from "../ui-kit/link-button";
 import { FaArrowRight } from "react-icons/fa";

@@ -7,6 +7,9 @@
     .brand {
         font-size: 2rem;
         font-weight: bold;
+        @media screen and (max-width: 768px) {
+            font-size: 1rem;
+        }   
     }
     .nav {
         display: flex;
@@ -20,5 +23,9 @@
                 text-decoration: underline;
             }
         }
+        @media screen and (max-width: 768px) {
+            font-size: 0.8rem;
+        }
+            
     }
 }

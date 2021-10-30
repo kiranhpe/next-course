@@ -15,6 +15,7 @@ export const CourseDetails = () => {
       setCourse(res.data);
     });
   }, []);
+  
   return (
     <div>
       {course && <Course course={course} isAdvancedPage={true} />}

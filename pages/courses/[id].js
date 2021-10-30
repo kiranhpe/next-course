@@ -1,20 +1,23 @@
+import axios from "axios";
 import { useRouter } from "next/dist/client/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Course } from "../../components/course";
-import { getCourseById } from "../../mock-data.service";
 import { LinkButton } from "../../ui-kit/link-button";
 
 export const CourseDetails = () => {
   const router = useRouter();
+  const [course, setCourse] = useState(null);
+
+  useEffect(() => {
+    const id = router.query.id;
+    axios.get(`/api/courses/${id}`).then((res) => {
+      setCourse(res.data);
+    });
+  }, []);
   return (
     <div>
-      {router.query["id"] && (
-        <Course
-          course={getCourseById(+router.query.id)}
-          isAdvancedPage={true}
-        />
-      )}
+      {course && <Course course={course} isAdvancedPage={true} />}
       <div className="back">
         <LinkButton href="/" text="Back">
           <FaArrowLeft />

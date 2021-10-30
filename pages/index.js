@@ -9,6 +9,7 @@ export default function Home() {
   }, []);
   return (
     <>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Next Courses</title>
       <div className={styles.container}></div>;
     </>

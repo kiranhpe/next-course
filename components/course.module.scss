@@ -40,15 +40,23 @@
 }
 .courseDetails {
     display: flex;
-    .linkButtonContainer {
-        margin-left: auto;
-        margin-top: auto;
-    }
-
+    justify-content: space-between;
     @media screen and (max-width: 768px) {
         flex-direction: column;
         align-items: center;
         
+    }
+}
+
+.priceContainer {
+    display: flex;
+    flex-direction: column;
+    .price {
+        display: flex;
+        padding: 12px 0;
+        margin-bottom: auto;
+        justify-content: flex-end;
+        font-size: 2rem;
     }
 }
 

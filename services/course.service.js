@@ -1,3 +1,5 @@
+import { getAuthorByID } from "./authors.service";
+
 const courses = [
   {
     courseId: 1,
@@ -11,6 +13,7 @@ const courses = [
     price: 190,
     rating: 4.0,
     students: 2300,
+    previewVideoUrl: "https://www.youtube.com/watch?v=W-3s5_fhFNE",
     author: 1,
   },
   {
@@ -24,6 +27,7 @@ const courses = [
     price: 222,
     rating: 4.5,
     students: 3000,
+    previewVideoUrl: "https://www.youtube.com/watch?v=N3AkSS5hXMA",
     author: 2,
   },
   {
@@ -38,6 +42,7 @@ const courses = [
     price: 300,
     rating: 5.0,
     students: 2000,
+    previewVideoUrl: "https://www.youtube.com/watch?v=W-3s5_fhFNE",
     author: 1,
   },
   {
@@ -51,6 +56,7 @@ const courses = [
     price: 444,
     rating: 1.0,
     students: 1000,
+    previewVideoUrl: "https://www.youtube.com/watch?v=W-3s5_fhFNE",
     author: 4,
   },
   {
@@ -65,6 +71,7 @@ const courses = [
     price: 555,
     rating: 4.5,
     students: 2000,
+    previewVideoUrl: "https://www.youtube.com/watch?v=W-3s5_fhFNE",
     author: 2,
   },
   {
@@ -78,6 +85,7 @@ const courses = [
     price: 666,
     rating: 4.5,
     students: 2000,
+    previewVideoUrl: "https://www.youtube.com/watch?v=W-3s5_fhFNE",
     author: 3,
   },
   {
@@ -92,6 +100,7 @@ const courses = [
     price: 777,
     rating: 4.5,
     students: 2000,
+    previewVideoUrl: "https://www.youtube.com/watch?v=W-3s5_fhFNE",
     author: 3,
   },
   {
@@ -106,6 +115,7 @@ const courses = [
     price: 888,
     rating: 4.5,
     students: 2000,
+    previewVideoUrl: "https://www.youtube.com/watch?v=W-3s5_fhFNE",
     author: 2,
   },
   {
@@ -119,33 +129,49 @@ const courses = [
     price: 999,
     rating: 4.5,
     students: 2000,
+    previewVideoUrl: "https://www.youtube.com/watch?v=-EPMOaV7h_Q",
     author: 1,
   },
 ];
 
-
 export const getCourses = () => {
-  return courses;
+  return attachAuthor(courses);
 };
 
 export const getCourseById = (id) => {
-  return courses.find((course) => course.courseId === id);
+  return attachAuthor(courses.find((course) => course.courseId === id));
 };
 
 export const getCoursesBycategory = (category) => {
-  return courses.filter((course) => course.category === category);
+  return attachAuthor(courses.filter((course) => course.category === category));
 };
 
 export const getCoursesByRating = (rating) => {
-  return courses.filter((course) => course.rating === rating);
+  return attachAuthor(courses.filter((course) => course.rating === rating));
 };
 
 export const getCoursesByPriceRange = (min, max) => {
-  return courses.filter((course) => course.price >= min && course.price <= max);
+  return attachAuthor(
+    courses.filter((course) => course.price >= min && course.price <= max)
+  );
 };
 
 export const searchCoursesByName = (name) => {
-  return courses.filter((course) =>
-    course.name.toLowerCase().includes(name.toLowerCase())
+  return attachAuthor(
+    courses.filter((course) =>
+      course.name.toLowerCase().includes(name.toLowerCase())
+    )
   );
+};
+
+const attachAuthor = (course) => {
+  if (Array.isArray(course)) {
+    return course.map((course) => {
+      const author = getAuthorByID(course.author);
+      return { ...course, authorName:author.name };
+    });
+  } else {
+    const author = getAuthorByID(course.author);
+    return { ...course, authorName:author.name };
+  }
 };

@@ -13,13 +13,23 @@ export const CourseDetails = () => {
   const id = router.query.id;
 
   useEffect(() => {
-    axios.get(`/api/courses/${id}`).then((res) => {
-      setCourse(res.data);
-    });
+    if(id) {
+      axios.get(`/api/courses/${id}`)
+        .then(res => {
+          setCourse(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
 
-    axios.get(`/api/courses/${id}/reviews`).then((res) => {
-      setReviews(res.data);
-    });
+      axios.get(`/api/courses/${id}/reviews`)
+        .then(res => {
+          setReviews(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }, [id]);
 
   return (

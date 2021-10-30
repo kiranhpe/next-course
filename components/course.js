@@ -1,11 +1,12 @@
 import { Card } from "../ui-kit/card";
 import { LinkButton } from "../ui-kit/link-button";
-import { FaArrowRight, FaStar } from "react-icons/fa";
+import { FaArrowRight, FaStar, FaUserGraduate } from "react-icons/fa";
 
 import styles from "./course.module.scss";
 import Rating from "react-rating";
+import ReactPlayer from "react-player";
 
-export const Course = ({ course, authors, isAdvancedPage }) => {
+export const Course = ({ course, isAdvancedPage }) => {
   return (
     <Card>
       <title>{course.name}</title>
@@ -25,7 +26,9 @@ export const Course = ({ course, authors, isAdvancedPage }) => {
           </span>
         </span>
       </div>
-
+      {isAdvancedPage && (
+        <ReactPlayer url={course.previewVideoUrl} width="100%" />
+      )}
       <div className={styles.courseDetails}>
         <div>
           <p>{course.description}</p>
@@ -35,18 +38,31 @@ export const Course = ({ course, authors, isAdvancedPage }) => {
             </span>
           ))}
           <p className={styles.author}>
-            {authors &&
-              "- " + authors.find((x) => x.authorId === course.author)?.name}
+            {course.author && "- " + course.authorName}
+          </p>
+          <p>
+            {" "}
+            <FaUserGraduate /> {course.students}
           </p>
         </div>
-        <div className={styles.linkButtonContainer}>
-          {!isAdvancedPage && (
-            <div className={styles.learnMore}>
-              <LinkButton href={"/courses/" + course.courseId} text="Learn More">
-                <FaArrowRight />
-              </LinkButton>
+        <div className={styles.priceContainer}>
+          {course.price && (
+            <div className={styles.price}>
+              <span>${course.price}</span>
             </div>
           )}
+          <div className={styles.linkButtonContainer}>
+            {!isAdvancedPage && (
+              <div className={styles.learnMore}>
+                <LinkButton
+                  href={"/courses/" + course.courseId}
+                  text="Learn More"
+                >
+                  <FaArrowRight />
+                </LinkButton>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </Card>

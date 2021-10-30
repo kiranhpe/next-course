@@ -166,9 +166,9 @@ export const searchCoursesByName = (name) => {
 
 const attachAuthor = (course) => {
   if (Array.isArray(course)) {
-    return course.map((course) => {
-      const author = getAuthorByID(course.author);
-      return { ...course, authorName:author.name };
+    return course.map((item) => {
+      const author = getAuthorByID(item.author);
+      return { ...item, authorName:author.name };
     });
   } else {
     const author = getAuthorByID(course.author);

@@ -1,10 +1,16 @@
 import { Card } from "../ui-kit/card";
 import { LinkButton } from "../ui-kit/link-button";
-import { FaArrowRight, FaStar, FaUserGraduate } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaRegStar,
+  FaStar,
+  FaUserGraduate,
+} from "react-icons/fa";
 
 import styles from "./course.module.scss";
 import Rating from "react-rating";
 import ReactPlayer from "react-player";
+import { RatingStars } from "../ui-kit/rating-stars";
 
 export const Course = ({ course, isAdvancedPage }) => {
   return (
@@ -19,7 +25,7 @@ export const Course = ({ course, isAdvancedPage }) => {
         )}
         <span className={[...[styles.rating]].join(" ")}>
           <span className={styles.desktopRating}>
-            <Rating initialRating={course.rating} readonly />
+           <RatingStars readonly={true} initialRating={course.rating} />
           </span>
           <span className={styles.mobileRating}>
             {course.rating} <FaStar />
@@ -29,9 +35,10 @@ export const Course = ({ course, isAdvancedPage }) => {
       {isAdvancedPage && (
         <ReactPlayer url={course.previewVideoUrl} width="100%" />
       )}
+      <p>{course.description}</p>
+
       <div className={styles.courseDetails}>
         <div>
-          <p>{course.description}</p>
           {course.category.split(",").map((catogory, index) => (
             <span className={styles.tags} key={catogory + "-" + index}>
               {catogory}

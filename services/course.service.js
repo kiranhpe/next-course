@@ -1,4 +1,5 @@
 import { getAuthorByID } from "./authors.service";
+import { getTopicsForCourseId } from "./topics.service";
 
 const courses = [
   {
@@ -175,3 +176,4 @@ const attachAuthor = (course) => {
     return { ...course, authorName:author.name };
   }
 };
+

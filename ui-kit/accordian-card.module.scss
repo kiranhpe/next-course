@@ -1,0 +1,22 @@
+.accordian {
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    
+    .accordianHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px;
+        cursor: pointer;
+
+        .accordianHeaderTitle {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .accordianHeaderIcon {
+            font-size: 18px;
+        }
+    }
+}

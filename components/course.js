@@ -49,7 +49,6 @@ export const Course = ({ course, isAdvancedPage }) => {
             <FaPenNib/>{course.author &&  course.authorName}
           </p>
           <p>
-            {" "}
             <FaUserGraduate /> {course.students}
           </p>
         </div>

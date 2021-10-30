@@ -7,7 +7,7 @@ export const CourseDetails = () => {
   const router = useRouter();
   return (
     <div>
-      {router.query['id'] && (<Course course={getCourseById(+router.query.id)} />)}
+      {router.query['id'] && (<Course course={getCourseById(+router.query.id)} isAdvancedPage={true} />)}
     </div>
   );
 };

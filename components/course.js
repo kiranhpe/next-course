@@ -1,9 +1,21 @@
 import React from "react";
+import { Card } from "../ui-kit/card";
 import { LinkButton } from "../ui-kit/link-button";
+import { FaStar } from "react-icons/fa";
+
 import styles from "./course.module.scss";
-export const Course = ({ course }) => {
+import { getAuthorByID } from "../mock-data.service";
+export const Course = ({ course, isAdvancedPage }) => {
+
+  const getRatingStyles = (rating) => {
+    if (rating < 3) return styles.ratingRed;
+    if (rating < 4) return styles.ratingYellow;
+    return styles.ratingGreen;
+  };
+
   return (
-    <div className={styles.card}>
+    <Card>
+      <title>{course.name}</title>
       <div className={styles.cardheader}>
         <h1>{course.name}</h1>
         {course.isTopRated && (
@@ -13,21 +25,23 @@ export const Course = ({ course }) => {
         )}
         <span
           className={[
-            ...[
-              course.rating <= 2
-                ? styles.poor
-                : course.rating <= 3
-                ? styles.average
-                : styles.excellent,
-            ],
+            ...[getRatingStyles(course.rating)],
             ...[styles.rating],
           ].join(" ")}
         >
-          {course.rating}
+          {course.rating} <FaStar />
         </span>
       </div>
       <p>{course.description}</p>
-      <LinkButton href={'/courses/' + course.id} text="Learn More..."></LinkButton>
-    </div>
+      <p className={styles.author}>{"- "+getAuthorByID(course.id).name}</p>
+      {!isAdvancedPage && (
+        <div className={styles.learnMore}>
+          <LinkButton
+            href={"/courses/" + course.id}
+            text="Learn More..."
+          ></LinkButton>
+        </div>
+      )}
+    </Card>
   );
 };

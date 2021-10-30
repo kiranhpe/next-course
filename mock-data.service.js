@@ -11,6 +11,7 @@ const courses = [
     price: 190,
     rating: 4.0,
     students: 2300,
+    author: 1
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ const courses = [
     price: 222,
     rating: 4.5,
     students: 3000,
+    author: 2
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ const courses = [
     price: 300,
     rating: 5.0,
     students: 2000,
+    author: 1
   },
   {
     id: 4,
@@ -48,6 +51,7 @@ const courses = [
     price: 444,
     rating: 1.0,
     students: 1000,
+    author: 4
   },
   {
     id: 5,
@@ -61,6 +65,7 @@ const courses = [
     price: 555,
     rating: 4.5,
     students: 2000,
+    author: 2
   },
   {
     id: 6,
@@ -73,6 +78,7 @@ const courses = [
     price: 666,
     rating: 4.5,
     students: 2000,
+    author: 3
   },
   {
     id: 7,
@@ -85,6 +91,7 @@ const courses = [
     price: 777,
     rating: 4.5,
     students: 2000,
+    author: 3
   },
   {
     id: 8,
@@ -97,6 +104,7 @@ const courses = [
     price: 888,
     rating: 4.5,
     students: 2000,
+    author: 2
   },
   {
     id: 9,
@@ -109,8 +117,16 @@ const courses = [
     price: 999,
     rating: 4.5,
     students: 2000,
+    author: 1
   },
 ];
+
+const authors = [
+  {id: 1, name: "Dave"},
+  {id: 2, name: "Sammy"},
+  {id: 3, name: "Mike"},
+  {id: 4, name: "Robert"},
+]
 
 
 export const getCourses = () => { 
@@ -135,4 +151,8 @@ export const getCoursesByPriceRange = (min, max) => {
 
 export const searchCoursesByName = (name) => {
     return courses.filter((course) => course.name.toLowerCase().includes(name.toLowerCase()));
+}
+
+export const getAuthorByID = (id) => {
+    return authors.find((author) => author.id === id);
 }

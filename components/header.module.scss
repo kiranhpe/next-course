@@ -12,10 +12,10 @@
         display: flex;
         align-items: center;
         margin-left: auto;
-        .link {
+        text-decoration: none;
+        text-transform: uppercase;
+        *:not(:first-child) {
             margin-left: 12px;
-            text-decoration: none;
-            text-transform: uppercase;
             &:hover {
                 text-decoration: underline;
             }

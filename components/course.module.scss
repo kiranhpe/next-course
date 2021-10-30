@@ -5,8 +5,17 @@
 .rating {
     margin-left: auto;
     padding: 4px 8px;
-    @media screen and (max-width: 768px) {
+    .mobileRating {
         display: none;
+    }
+    @media screen and (max-width: 768px) {
+        .mobileRating{
+            display: flex;
+            align-items: center;
+        }
+        .desktopRating {
+            display: none;
+        }
     }
 }
 
@@ -17,6 +26,16 @@
         background-color: coral;
         margin-left: 16px;
         padding: 2px 4px;
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+    p {
+        display: none;
+        @media screen and (max-width: 768px) {
+            display: block;
+            
+        }
     }
 }
 .courseDetails {

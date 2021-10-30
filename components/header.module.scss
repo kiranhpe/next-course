@@ -1,11 +1,11 @@
 .header {
-    padding: 8px 24px;
+    padding: 0px 24px;
     display: flex;
     align-items: center;
     background-color: #283d3b;
     color: #fff;
     .brand {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: bold;
         @media screen and (max-width: 768px) {
             font-size: 1rem;

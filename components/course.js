@@ -2,6 +2,7 @@ import { Card } from "../ui-kit/card";
 import { LinkButton } from "../ui-kit/link-button";
 import {
   FaArrowRight,
+  FaPenNib,
   FaRegStar,
   FaStar,
   FaUserGraduate,
@@ -45,7 +46,7 @@ export const Course = ({ course, isAdvancedPage }) => {
             </span>
           ))}
           <p className={styles.author}>
-            {course.author && "- " + course.authorName}
+            <FaPenNib/>{course.author &&  course.authorName}
           </p>
           <p>
             {" "}

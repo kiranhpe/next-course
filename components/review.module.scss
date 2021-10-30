@@ -1,11 +1,19 @@
 .reviewContainer {
+    h4{
+        margin: 0;
+    }
     .comment {
         font-size: 1rem;
+        margin: 4px 0;
+
     }
     .rating {
         font-size: 1.5rem;
+        margin: 4px 0;
+
     }
     .createdAt {
         font-size: 0.8rem;
+        margin: 4px 0;
     }
 }

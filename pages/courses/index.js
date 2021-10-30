@@ -7,7 +7,7 @@ const CoursesPage = () => {
 
   useEffect(() => {
     setCourses(getCourses());
-  }, []);
+  },[]);
 
   return (
     <div>

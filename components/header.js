@@ -1,14 +1,16 @@
 import React from 'react'
 import styles from './header.module.scss';
 
+import Link from "next/link";
+
 export const Header = () => {
     return (
         <div className={styles.header}>
             <h1 className={styles.brand}>Next Courses</h1>
             <nav className={styles.nav}>
-                <a className={styles.link} href="/about">about</a>
-                <a className={styles.link} href="/courses">courses</a>
-                <a className={styles.link} href="/contact">contact</a>
+                <Link className={styles.link} href="/about">about</Link>
+                <Link className={styles.link} href="/courses">courses</Link>
+                <Link className={styles.link} href="/contact">contact</Link>
             </nav>
         </div>
     )

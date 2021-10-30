@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { CourseList } from "../../components/course-list";
 import { InputText } from "../../ui-kit/input-text";
 
-const CoursesPage = ({allCourses}) => {
+const CoursesPage = () => {
   const [courses, setCourses] = useState(null);
   useEffect(() => {
-    setCourses(allCourses);
+    getAllCourses();
   }, []);
 
   const handleSearch = (e) => {
@@ -37,15 +37,5 @@ const CoursesPage = ({allCourses}) => {
     </div>
   );
 };
-
-export async function getStaticProps() {
-  const res = await axios.get("/api/courses");
-  return {
-    props: {
-      allCourses: res.data,
-    }, 
-    revalidate: 60 * 1
-  };
-}
 
 export default CoursesPage;

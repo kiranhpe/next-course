@@ -1,6 +1,6 @@
 const courses = [
   {
-    id: 1,
+    courseId: 1,
     name: "Angular",
     category: "web, REST",
     description:
@@ -14,7 +14,7 @@ const courses = [
     author: 1,
   },
   {
-    id: 2,
+    courseId: 2,
     name: "React",
     category: "web, REST",
     description: "React is a JavaScript library for building user interfaces.",
@@ -27,7 +27,7 @@ const courses = [
     author: 2,
   },
   {
-    id: 3,
+    courseId: 3,
     name: "Vue",
     category: "web, REST",
     description:
@@ -41,7 +41,7 @@ const courses = [
     author: 1,
   },
   {
-    id: 4,
+    courseId: 4,
     name: "Nextjs",
     category: "web, REST",
     description: "Next.js is a framework for building modern web applications.",
@@ -54,7 +54,7 @@ const courses = [
     author: 4,
   },
   {
-    id: 5,
+    courseId: 5,
     name: "Express",
     category: "web, REST",
     description:
@@ -68,7 +68,7 @@ const courses = [
     author: 2,
   },
   {
-    id: 6,
+    courseId: 6,
     name: "MongoDB",
     category: "database, REST",
     description: "No Sql DB for documents storage",
@@ -81,7 +81,7 @@ const courses = [
     author: 3,
   },
   {
-    id: 7,
+    courseId: 7,
     name: "Nodejs",
     category: "server, REST",
     description:
@@ -95,7 +95,7 @@ const courses = [
     author: 3,
   },
   {
-    id: 8,
+    courseId: 8,
     name: "Python",
     category: "server, REST",
     description:
@@ -109,7 +109,7 @@ const courses = [
     author: 2,
   },
   {
-    id: 9,
+    courseId: 9,
     name: "Sql server",
     category: "database, REST",
     description: "Id adipisicing amet adipisicing anim voluptate.",
@@ -123,19 +123,13 @@ const courses = [
   },
 ];
 
-const authors = [
-  { id: 1, name: "Dave" },
-  { id: 2, name: "Sammy" },
-  { id: 3, name: "Mike" },
-  { id: 4, name: "Robert" },
-];
 
 export const getCourses = () => {
   return courses;
 };
 
 export const getCourseById = (id) => {
-  return courses.find((course) => course.id === id);
+  return courses.find((course) => course.courseId === id);
 };
 
 export const getCoursesBycategory = (category) => {
@@ -154,12 +148,4 @@ export const searchCoursesByName = (name) => {
   return courses.filter((course) =>
     course.name.toLowerCase().includes(name.toLowerCase())
   );
-};
-
-export const getAuthorByID = (id) => {
-  return authors.find((author) => author.id === id);
-};
-
-export const getAuthors = () => {
-  return authors;
 };

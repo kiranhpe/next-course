@@ -36,13 +36,13 @@ export const Course = ({ course, authors, isAdvancedPage }) => {
           ))}
           <p className={styles.author}>
             {authors &&
-              "- " + authors.find((x) => x.id === course.author)?.name}
+              "- " + authors.find((x) => x.authorId === course.author)?.name}
           </p>
         </div>
         <div className={styles.linkButtonContainer}>
           {!isAdvancedPage && (
             <div className={styles.learnMore}>
-              <LinkButton href={"/courses/" + course.id} text="Learn More">
+              <LinkButton href={"/courses/" + course.courseId} text="Learn More">
                 <FaArrowRight />
               </LinkButton>
             </div>

@@ -14,3 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.back {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end
+}

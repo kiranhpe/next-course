@@ -1,15 +1,18 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { CourseList } from "../../components/course-list";
 import { getCourses } from "../../mock-data.service";
 
 const CoursesPage = () => {
-  const allCourses = getCourses();
+  const [courses, setCourses] = useState(null);
+
+  useEffect(() => {
+    setCourses(getCourses());
+  }, []);
 
   return (
     <div>
       <title>Next Courses</title>
-
-      <CourseList courses={allCourses}></CourseList>
+      {courses  && (<CourseList courses={courses} />)}
     </div>
   );
 };

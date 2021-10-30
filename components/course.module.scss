@@ -16,7 +16,13 @@
         padding: 2px 4px;
     }
 }
-
+.courseDetails {
+    display: flex;
+    .linkButtonContainer {
+        margin-left: auto;
+        margin-top: auto;
+    }
+}
 .author {
     font-style: italic;
     font-weight: 600;

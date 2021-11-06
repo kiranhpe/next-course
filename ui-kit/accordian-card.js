@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 
 import styles from "./accordian-card.module.scss";
-export const AccordianCard = ({title='test', children, handleExpand, extraData=null}) => {
+export const AccordianCard = ({title='test', handleExpand, extraData=null, children}) => {
   const [isOpen, setIsOpen] = useState(false);
-
-
+  
   return (
     <div className={styles.accordian}>
       <div

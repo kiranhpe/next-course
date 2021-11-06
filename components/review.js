@@ -9,7 +9,7 @@ export const Review = ({ review }) => {
   return (
     <Card>
       <div className={styles.reviewContainer}> 
-      <h4>{review.user.name}</h4>
+      <h4>{review.user.firstName}</h4>
       <RatingStars initialRating={review.rating} readonly={true}/>
       <p className={styles.comment}>{review.comment}</p>
       <p className={styles.createdAt}>{review.createdAt}</p>

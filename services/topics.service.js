@@ -1,3 +1,5 @@
+import { Topics } from "../models/topics"
+
 const topics = [
     {
         topicId: 1,
@@ -256,10 +258,16 @@ const sections = [
     }
 ]
 
-export const getTopicsForCourseId = (courseId) => {
-    return topics.filter(topic => topic.coursetopicId === courseId)
+export const getTopicsForCourseId = async (courseId) => {
+    return Topics.find({course: courseId});
 }
 
 export const getSectionsForTopic = (topicId) => {
     return sections.filter(section => section.topicId === topicId);
 }
+
+
+export const addTopic = async (topic) => {
+    return Topics.create({name: topic.name, description: topic.description, course: topic.courseId});
+}
+

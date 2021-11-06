@@ -1,3 +1,4 @@
+import { Review } from "../models/review";
 import { getUserById } from "./users.service";
 
 const courseReviews = [
@@ -161,7 +162,6 @@ const courseReviews = [
     comment: "Worst course ever",
     createdAt: "2019-01-20",
   },
-  
 ];
 
 export const getCourseReviews = (courseId) => {
@@ -176,16 +176,16 @@ export const getUserReviews = (userId) => {
   );
 };
 
-export const getCourseReviewsOrderByCreatedAt = (courseId) => {
-  return attachUserToReview(
-    courseReviews
-      .filter((review) => review.courseId === courseId)
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-  );
+export const getCourseReviewsOrderByCreatedAt = async (courseId) => {
+  return Review.find({ courseId: courseId }).sort({ createdAt: -1 }).populate('user');
 };
 
 const attachUserToReview = (reviews) => {
   return reviews.map((review) => {
     return { ...review, user: getUserById(review.userId) };
   });
+};
+
+export const addReview = async (review) => {
+  return Review.create(review);
 };

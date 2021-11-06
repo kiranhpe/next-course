@@ -1,0 +1,20 @@
+POST http://localhost:3000/api/auth/register
+
+body:
+{
+  "email": "kira",
+    "password": "kira",
+    "passwordConfirm": "kira"
+}
+
+
+###
+
+GET http://localhost:3000/api/courses
+
+###
+http://localhost:3000/api/courses/6186564600933a58b28dc3e5/topics
+
+
+###
+GET http://localhost:3000/api/users

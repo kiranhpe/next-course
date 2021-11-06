@@ -6,10 +6,12 @@ import { Course } from "../../components/course";
 import { ReviewList } from "../../components/review-list";
 import { AccordianCard } from "../../ui-kit/accordian-card";
 import { LinkButton } from "../../ui-kit/link-button";
+import { Sections } from "../../ui-kit/sections";
 
 export const CourseDetails = () => {
   const router = useRouter();
   const [course, setCourse] = useState(null);
+  const [topics, setTopics] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [topicSections, setTopicSections] = useState([]);
 
@@ -26,9 +28,18 @@ export const CourseDetails = () => {
           console.log(err);
         });
       axios
-        .get(`/api/courses/${id}/topics`)
+        .get(`/api/courses/${id}`)
         .then((res) => {
           setCourse(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      axios
+        .get(`/api/courses/${id}/topics`)
+        .then((res) => {
+          const plainData = res.data;
+          setTopics(plainData);
         })
         .catch((err) => {
           console.log(err);
@@ -38,7 +49,7 @@ export const CourseDetails = () => {
 
   const handleTopicsClick = (topic) => {
     axios
-      .get(`/api/courses/${course.courseId}/topics/${topic.topicId}`)
+      .get(`/api/courses/${course.courseId}/topics/${topic._id}`)
       .then((res) => {
         setTopicSections(res.data);
       })
@@ -50,23 +61,21 @@ export const CourseDetails = () => {
   return (
     <div>
       {course && <Course course={course} isAdvancedPage={true} />}
-      {course?.topics &&
-        course?.topics.length > 0 &&
-        course?.topics.map((topic) => (
-          <AccordianCard
-            title={topic.name}
-            key={topic.topicId}
-            handleExpand={handleTopicsClick}
-            extraData={topic}
-          >
-            {topicSections.length > 0 &&
-              topicSections.map((section) => (
-                <div key={section.sectionId}>
-                  <h3>{section.name}</h3>
-                </div>
-              ))}
-          </AccordianCard>
-        ))}
+      <div>
+        <h3>Topics</h3>
+        {topics.length > 0 &&
+          topics.map((topic, index) => (
+            <AccordianCard
+              title={topic.name}
+              key={index}
+              handleExpand={handleTopicsClick}
+              extraData={topic}
+            >
+              <p></p>
+            </AccordianCard>
+          ))}
+      </div>
+
       {reviews.length > 0 && (
         <div>
           <h3>Reviews</h3>

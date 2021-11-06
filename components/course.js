@@ -40,13 +40,16 @@ export const Course = ({ course, isAdvancedPage }) => {
 
       <div className={styles.courseDetails}>
         <div>
-          {course.category.split(",").map((catogory, index) => (
+          {/* {course.category.split(",").map((catogory, index) => (
             <span className={styles.tags} key={catogory + "-" + index}>
               {catogory}
             </span>
-          ))}
+          ))} */}
+           <span className={styles.tags} >
+              {course.category}
+            </span>
           <p className={styles.author}>
-            <FaPenNib/>{course.author &&  course.authorName}
+            <FaPenNib/>{course.author &&  course.author.name}
           </p>
           <p>
             <FaUserGraduate /> {course.students}
@@ -62,7 +65,7 @@ export const Course = ({ course, isAdvancedPage }) => {
             {!isAdvancedPage && (
               <div className={styles.learnMore}>
                 <LinkButton
-                  href={"/courses/" + course.courseId}
+                  href={"/courses/" + course._id}
                   text="Learn More"
                 >
                   <FaArrowRight />

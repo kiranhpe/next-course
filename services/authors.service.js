@@ -1,3 +1,5 @@
+import { Author } from "../models/author";
+
 const authors = [
   { authorId: 1, name: "Dave" },
   { authorId: 2, name: "Sammy" },
@@ -5,10 +7,15 @@ const authors = [
   { authorId: 4, name: "Robert" },
 ];
 
-export const getAuthorByID = (id) => {
-  return authors.find((author) => author.authorId === id);
+export const getAuthorByID = async (id) => {
+  const author = Author.findOne({ _id: id });
+  return author;
 };
 
 export const getAuthors = () => {
   return authors;
+};
+
+export const addAuthor = async (author) => {
+  return Author.create(author);
 };

@@ -1,5 +1,6 @@
+import { Author } from "../models/author";
+import { Course } from "../models/course";
 import { getAuthorByID } from "./authors.service";
-import { getTopicsForCourseId } from "./topics.service";
 
 const courses = [
   {
@@ -135,12 +136,12 @@ const courses = [
   },
 ];
 
-export const getCourses = () => {
-  return attachAuthor(courses);
+export const getCourses = async () => {
+  return Course.find({}).populate("author");
 };
 
-export const getCourseById = (id) => {
-  return attachAuthor(courses.find((course) => course.courseId === id));
+export const getCourseById = async(id) => {
+  return Course.findById(id).populate("author");
 };
 
 export const getCoursesBycategory = (category) => {
@@ -157,23 +158,11 @@ export const getCoursesByPriceRange = (min, max) => {
   );
 };
 
-export const searchCoursesByName = (name) => {
-  return attachAuthor(
-    courses.filter((course) =>
-      course.name.toLowerCase().includes(name.toLowerCase())
-    )
-  );
+export const searchCoursesByName = async (name) => {
+  return Course.find({ name: { $regex: name, $options: "i" } }).populate( "author" );
 };
 
-const attachAuthor = (course) => {
-  if (Array.isArray(course)) {
-    return course.map((item) => {
-      const author = getAuthorByID(item.author);
-      return { ...item, authorName:author.name };
-    });
-  } else {
-    const author = getAuthorByID(course.author);
-    return { ...course, authorName:author.name };
-  }
-};
 
+export const addCourse = async(course) => {
+  return Course.create(course);
+};

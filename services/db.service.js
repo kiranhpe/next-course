@@ -1,4 +1,5 @@
 // connect to monogo db
+
 import mongoose from "mongoose";
 
 export const connectDB = async () => {

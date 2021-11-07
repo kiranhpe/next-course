@@ -12,8 +12,8 @@ export const getAuthorByID = async (id) => {
   return author;
 };
 
-export const getAuthors = () => {
-  return authors;
+export const getAuthors = async () => {
+  return Author.find({});
 };
 
 export const addAuthor = async (author) => {

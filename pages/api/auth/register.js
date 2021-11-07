@@ -30,9 +30,13 @@ export default async function handler(req, res) {
     if (errors.length) {
       res.status(400).json({ errors });
     } else {
+
+      const salt = 10;
+      const hashedPassword = await bcrypt.hash(password, salt);
+
       const user = {
         email,
-        password: await hashPassword(password, 10),
+        password: hashedPassword,
         firstName,
         lastName,
         roles,
@@ -55,13 +59,3 @@ export default async function handler(req, res) {
   }
 }
 
-const hashPassword = async (password, saltRounds) => {
-  const hashedPassword = await new Promise((resolve, reject) => {
-    bcrypt.hash(password, saltRounds, function (err, hash) {
-      if (err) reject(err);
-      resolve(hash);
-    });
-  });
-
-  return hashedPassword;
-};

@@ -13,6 +13,9 @@ export const Header = () => {
         <Link className={styles.link} href="/courses">
           courses
         </Link>
+        <Link className={styles.link} href="/login">
+          login
+        </Link>
       </nav>
     </div>
   );

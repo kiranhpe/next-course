@@ -20,7 +20,7 @@ const CoursesPage = () => {
     setIsLoading(true);
     console.log()
     axios.get(`/api/courses/search/${name}`).then(({ data }) => {
-      isLoading && setIsLoading(false);
+     setIsLoading(false);
       setCourses(data);
     });
   };
@@ -28,7 +28,7 @@ const CoursesPage = () => {
   const getAllCourses = () => {
     setIsLoading(true);
     axios.get("/api/courses").then(({ data }) => {
-      isLoading && setIsLoading(false);
+      setIsLoading(false);
       setCourses(data);
     });
   };
@@ -36,7 +36,7 @@ const CoursesPage = () => {
   return (
     <div>
       <title>Next Courses</title>
-      <Spinner isLoading={isLoading}/>
+      <Spinner isLoading={isLoading} type={'bubble'}/>
       <InputText
         placeholder="Search for course"
         onTextChange={(event) => handleSearch(event)}

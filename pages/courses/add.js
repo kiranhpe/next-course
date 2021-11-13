@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { InputText } from "../../ui-kit/input-text";
+import { Spinner } from "../../ui-kit/spinner";
 
 import styles from "./course.module.scss";
 
 export const AddCourse = () => {
     const router = useRouter()
 
-  const [authors, setAuthors] = React.useState([]);
-  const [categories, setCategories] = React.useState([
+  const [authors, setAuthors] = useState([]);
+  const [categories, setCategories] = useState([
     {
       value: "web",
       label: "Web",
@@ -24,14 +25,15 @@ export const AddCourse = () => {
       label: "Network",
     },
   ]);
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [price, setPrice] = React.useState("");
-  const [previewVideoUrl, setPreviewVideoUrl] = React.useState("");
-  const [author, setAuthor] = React.useState("");
-  const [category, setCategory] = React.useState("");
-  const [students, setStudents] = React.useState("");
-  const [duration, setDuration] = React.useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [previewVideoUrl, setPreviewVideoUrl] = useState("");
+  const [author, setAuthor] = useState("");
+  const [category, setCategory] = useState("");
+  const [students, setStudents] = useState("");
+  const [duration, setDuration] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -78,6 +80,7 @@ export const AddCourse = () => {
       duration
     );
     e.preventDefault();
+    setIsLoading(true);
     axios
       .post("/api/courses", {
         name,
@@ -92,7 +95,7 @@ export const AddCourse = () => {
       .then((res) => {
         console.log(res);
         console.log(res.data);
-
+        setIsLoading(false);
         router.push("/courses");
       })
       .catch((err) => {
@@ -101,18 +104,21 @@ export const AddCourse = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     axios.get("/api/authors").then((res) => {
-      const authors = res.data.map((x) => {
+      const authorsJson = res.data.map((x) => {
         return {
           value: x._id,
           label: x.name,
         };
       });
-      setAuthors(authors);
+      setIsLoading(false);
+      setAuthors(authorsJson);
     });
   }, []);
   return (
     <div className={styles.formContainer}>
+      <Spinner isLoading={isLoading}/>
       <form>
         <InputText placeholder="Course name" onTextChange={handleNameChange} />
         <br />

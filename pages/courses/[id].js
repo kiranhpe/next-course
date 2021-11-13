@@ -7,6 +7,7 @@ import { ReviewList } from "../../components/review-list";
 import { AccordianCard } from "../../ui-kit/accordian-card";
 import { LinkButton } from "../../ui-kit/link-button";
 import { Sections } from "../../ui-kit/sections";
+import { Spinner } from "../../ui-kit/spinner";
 
 export const CourseDetails = () => {
   const router = useRouter();
@@ -14,32 +15,23 @@ export const CourseDetails = () => {
   const [topics, setTopics] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [topicSections, setTopicSections] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const id = router.query.id;
 
   useEffect(() => {
+    setIsLoading(true);
     if (id) {
-      axios
-        .get(`/api/courses/${id}/reviews`)
-        .then((res) => {
-          setReviews(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      axios
-        .get(`/api/courses/${id}`)
-        .then((res) => {
-          setCourse(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      axios
-        .get(`/api/courses/${id}/topics`)
-        .then((res) => {
-          const plainData = res.data;
-          setTopics(plainData);
+      Promise.all([
+        axios.get(`/api/courses/${id}/reviews`),
+        axios.get(`/api/courses/${id}`),
+        axios.get(`/api/courses/${id}/topics`),
+      ])
+        .then(([reviewsResponse, courseResponse, topicsResponse]) => {
+          setCourse(courseResponse.data);
+          setReviews(reviewsResponse.data);
+          setTopics(topicsResponse.data);
+          setIsLoading(false);
         })
         .catch((err) => {
           console.log(err);
@@ -60,6 +52,7 @@ export const CourseDetails = () => {
 
   return (
     <div>
+      <Spinner isLoading={isLoading} />
       {course && <Course course={course} isAdvancedPage={true} />}
       <div>
         <h3>Topics</h3>

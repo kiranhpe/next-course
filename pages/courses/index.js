@@ -2,9 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { CourseList } from "../../components/course-list";
 import { InputText } from "../../ui-kit/input-text";
+import { Spinner } from "../../ui-kit/spinner";
 
 const CoursesPage = () => {
   const [courses, setCourses] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     getAllCourses();
   }, []);
@@ -15,13 +17,18 @@ const CoursesPage = () => {
   };
 
   const getCoursesByName = (name) => {
+    setIsLoading(true);
+    console.log()
     axios.get(`/api/courses/search/${name}`).then(({ data }) => {
+      isLoading && setIsLoading(false);
       setCourses(data);
     });
   };
 
   const getAllCourses = () => {
+    setIsLoading(true);
     axios.get("/api/courses").then(({ data }) => {
+      isLoading && setIsLoading(false);
       setCourses(data);
     });
   };
@@ -29,6 +36,7 @@ const CoursesPage = () => {
   return (
     <div>
       <title>Next Courses</title>
+      <Spinner isLoading={isLoading}/>
       <InputText
         placeholder="Search for course"
         onTextChange={(event) => handleSearch(event)}
